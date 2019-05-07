@@ -37,20 +37,18 @@ namespace Planner
 
         public List<S> Find_path(S start, S end)
         {
-            Dictionary<S, Node> closedSet = new Dictionary<S, Node>();
+            HashSet<S> closedSet = new HashSet<S>();
             SortedSet<Node> openSet = new SortedSet<Node>();
             Node curr = new Node(start, null);
             while (!curr.state.Equals(end))
             {
-                if (!closedSet.ContainsKey(curr.state))
+                if (!closedSet.Contains(curr.state))
                 {
                     foreach (S state in curr.state.AvailableMoves())
                     {
                         openSet.Add(new Node(state, curr));
                     }
-                    Node test = new Node();
-                    if (!closedSet.TryGetValue(curr.state, out test) ^ ((test != null) && curr.g < test.g))
-                            closedSet[curr.state] = curr;
+                    closedSet.Add(curr.state);
                 }
                 curr = openSet.Min;
                 openSet.Remove(curr);

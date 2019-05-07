@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            _3Jugs.SolveProblem();
+            ThreeJugs.SolveProblem();
         }
     }
 }

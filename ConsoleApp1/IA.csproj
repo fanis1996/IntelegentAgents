@@ -58,12 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="3JugsProblem\3Jugs.cs" />
+    <Compile Include="3JugsProblem\ThreeJugs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="3JugsProblem\_3JugsAction.cs" />
-    <Compile Include="3JugsProblem\_3JugsHeuristic.cs" />
-    <Compile Include="3JugsProblem\_3JugsState.cs" />
+    <Compile Include="3JugsProblem\ThreeJugsAction.cs" />
+    <Compile Include="3JugsProblem\ThreeJugsHeuristic.cs" />
+    <Compile Include="3JugsProblem\ThreeJugsState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
