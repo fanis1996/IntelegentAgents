@@ -9,40 +9,39 @@ namespace IA.CubesOnTableProblem
     class COTP
     {
         public static CubeState initialState, finalState;
+        
 
-        private static void Initialize()
+        public static void SolveProblem()
         {
             initialState = new CubeState();
             finalState = new CubeState();
 
+            int c =9;
+
             //Inital State
-            initialState.cubes.Add(0, new Cube(0, null));
-            initialState.cubes.Add(1, new Cube(1, initialState.cubes[0]));
-            initialState.cubes.Add(2, new Cube(2, initialState.cubes[1]));
-            initialState.cubes.Add(3, new Cube(3, initialState.cubes[2]));
-            initialState.cubes.Add(4, new Cube(4, initialState.cubes[3])); initialState.towertops.Add(initialState.cubes[4]);
+            for(int i = 0; i < c; i++)
+            {
+                initialState.cubes[i] = i - 1;
+            }
+            initialState.towertops.Add(c - 1);
 
             //Final State
-            finalState.cubes.Add(0, new Cube(0, null));
-            finalState.cubes.Add(1, new Cube(1, null)); finalState.towertops.Add(finalState.cubes[1]);
-            finalState.cubes.Add(2, new Cube(2, null)); finalState.cubes[1].IsOn = finalState.cubes[2];
-            finalState.cubes.Add(3, new Cube(3, finalState.cubes[0])); finalState.towertops.Add(finalState.cubes[3]);
-            finalState.cubes.Add(4, new Cube(4, null)); finalState.towertops.Add(finalState.cubes[4]);
-            //initialState.cubes.Add(0, new Cube(0, null));
-            //initialState.towertops.Add(initialState.cubes[0]);
-            //finalState.cubes.Add(0, new Cube(0, null));
-            //finalState.towertops.Add(finalState.cubes[0]);
+            finalState.cubes[0] = 2; finalState.towertops.Add(0);
+            finalState.cubes[1] = 7;
+            finalState.cubes[2] = 8;
+            finalState.cubes[3] = 1;finalState.towertops.Add(3);
+            finalState.cubes[4] = -1;
+            finalState.cubes[5] = 6; finalState.towertops.Add(5);
+            finalState.cubes[6] = 4;
+            finalState.cubes[7] = -1;
+            finalState.cubes[8] = -1;
 
 
 
-        }
 
-        public static void SolveProblem()
-        {
-            Initialize();
+
             Planner.Planner<CubeState, CubeHeuristic> planner = new Planner.Planner<CubeState, CubeHeuristic>();
             List<CubeState> path = planner.Find_path(initialState, finalState);
-            Console.WriteLine(path.Count);
             foreach (CubeState s in path)
             {
                 Console.WriteLine(s.ToString());

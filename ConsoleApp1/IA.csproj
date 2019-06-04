@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="3JugsProblem\ThreeJugs.cs" />
     <Compile Include="CubesOnTableProblem\COTP.cs" />
-    <Compile Include="CubesOnTableProblem\Cube.cs" />
     <Compile Include="CubesOnTableProblem\CubeAction.cs" />
     <Compile Include="CubesOnTableProblem\CubeHeuristic.cs" />
     <Compile Include="CubesOnTableProblem\CubeState.cs" />

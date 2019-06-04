@@ -7,80 +7,81 @@ namespace IA.CubesOnTableProblem
 {
     internal partial class CubeState : IState
     {
-        public SortedList<int,Cube> cubes;
-        public List<Cube> towertops;
+        public Dictionary<int,int> cubes;
+        public List<int> towertops;
         public CubeAction fromAction;
         public CubeState()
         {
-            cubes = new SortedList<int, Cube>();
-            towertops = new List<Cube>();
+            cubes = new Dictionary<int, int>();
+            towertops = new List<int>();
+            fromAction = new CubeAction(-2, -2);
         }
         public CubeState(CubeState cs)
         {
-            cubes = new SortedList<int, Cube>();
-            towertops = new List<Cube>();
-            foreach(Cube cube in cs.towertops)
-            {
-                Cube curr = new Cube(cube);
-                towertops.Add(curr);
-                while (curr != null)
-                {
-                    cubes.Add(curr.Id, curr);
-                    curr = curr.IsOn;
-                }
-            }
+            cubes = new Dictionary<int, int>(cs.cubes);
+            towertops = new List<int>(cs.towertops);
         }
         public List<IState> AvailableMoves()
         {
             List<IState> availableMoves = new List<IState>();
-            for(int i =0;i<towertops.Count;i++)
+            for(int i = 0; i < towertops.Count; i++)
             {
-                for (int j = 0; j < towertops.Count; j++)
+                for(int j = 0; j < towertops.Count; j++)
                 {
-                    if(i == j && towertops[i].IsOn != null)
+                    if (i == j)
                     {
-                        CubeAction a = new CubeAction(i, -1);
-                        availableMoves.Add(a.ResultState(this));
+                        if (cubes[towertops[i]] != -1)
+                        {
+                            CubeAction a = new CubeAction(towertops[i], -1);
+                            availableMoves.Add(a.ResultState(this));
+                        }
                     }
-                    else if (i != j)
+                    else
                     {
-                        CubeAction a = new CubeAction(i, j);
+                        CubeAction a = new CubeAction(towertops[i], towertops[j]);
                         availableMoves.Add(a.ResultState(this));
                     }
                 }
             }
+
             return availableMoves;
         }
 
         public override bool Equals(object obj)
         {
-
-            return cubes.SequenceEqual((obj as CubeState).cubes);
+            var state = obj as CubeState;
+            for(int i =0; i < cubes.Count; i++)
+            {
+                if (cubes[i] != state.cubes[i]) return false;
+            }
+            return true;
         }
 
         public override int GetHashCode()
         {
-            var hash = -146750;
-            foreach (KeyValuePair<int, Cube> pair in cubes)
-                hash = hash^ pair.Value.GetHashCode() ;
-            return hash;
+            UInt64 hashcode = 0;
+            for(int i = 0; i < cubes.Count; i++)
+            {
+                hashcode = (hashcode << 4) ^ (ulong)cubes[i];
+            }
+            return (int)hashcode;
         }
 
         public override string ToString()
         {
-            string s="";
-            foreach(Cube c in towertops)
+            string s = "";
+            foreach (int c in towertops)
             {
-                Cube curr = c;
+                int curr = c;
                 s += "[";
-                while (curr != null)
+                while (curr != -1)
                 {
-                    s += curr.ToString() + ", ";
-                    curr = curr.IsOn;
+                    s += " "+curr.ToString()+" ";
+                    curr = cubes[curr];
                 }
                 s += "] ";
             }
-            return s+" "+fromAction.ToString();
+            return s + " " + fromAction.ToString();
 
 
         }

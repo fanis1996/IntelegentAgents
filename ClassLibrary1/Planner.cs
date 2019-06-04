@@ -30,9 +30,16 @@ namespace Planner
 
             public int CompareTo(object obj)
             {
-                return f.CompareTo(((Node)obj).f);
+                Node other = obj as Node;
+                if (f.CompareTo(other.f) == 0)
+                {
+                    if (state.Equals(other.state))
+                        return 0;
+                    else
+                        return -1;
+                }
+                else return f.CompareTo(other.f);
             }
-
         }
 
         public List<S> Find_path(S start, S end)

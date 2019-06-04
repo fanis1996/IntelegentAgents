@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            //ThreeJugs.SolveProblem();
-            CubesOnTableProblem.COTP.SolveProblem();
+            ThreeJugs.SolveProblem();
+            //CubesOnTableProblem.COTP.SolveProblem();
         }
     }
 }
