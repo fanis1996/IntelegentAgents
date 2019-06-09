@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace IA.CubesOnTableProblem
+﻿namespace IA.CubesOnTableProblem
 {
     class CubeAction
     {

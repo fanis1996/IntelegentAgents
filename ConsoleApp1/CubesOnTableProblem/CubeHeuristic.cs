@@ -1,4 +1,4 @@
-﻿using Planner;
+﻿using Pathfinder;
 
 namespace IA.CubesOnTableProblem
 {
@@ -12,7 +12,7 @@ namespace IA.CubesOnTableProblem
             {
                 h += current_state.cubes[i]==COTP.finalState.cubes[i] ? 0 : 1;
             }
-            return h/2;
+            return h;
         }
     }
 }

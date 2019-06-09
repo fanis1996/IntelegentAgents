@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using Planner;
+using Pathfinder;
 
 namespace IA
 {
@@ -14,8 +13,8 @@ namespace IA
         public static readonly ThreeJugsState final = new ThreeJugsState(4, 4, 0);
         static public void SolveProblem()
         {
-            Planner<ThreeJugsState, ThreeJugsHeuristic> planner = new Planner<ThreeJugsState, ThreeJugsHeuristic>();
-            List<ThreeJugsState> path = planner.Find_path(initial, final);
+            Pathfinder<ThreeJugsState, ThreeJugsHeuristic> p = new Pathfinder<ThreeJugsState, ThreeJugsHeuristic>();
+            List<ThreeJugsState> path = p.Find_path(initial, final);
             foreach(ThreeJugsState s in path)
             {
                 Console.WriteLine(s.ToString());

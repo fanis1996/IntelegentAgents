@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using C5;
 
-namespace Planner
+namespace Pathfinder
 {
-    public class Planner<S,H> 
+    public class Pathfinder<S,H> 
         where S : IState
         where H:IHeuristic,new()
     {
@@ -31,21 +30,18 @@ namespace Planner
             public int CompareTo(object obj)
             {
                 Node other = obj as Node;
-                if (f.CompareTo(other.f) == 0)
+                if (state.Equals(other.state))
                 {
-                    if (state.Equals(other.state))
-                        return 0;
-                    else
-                        return -1;
+                    return g.CompareTo(other.g);
                 }
-                else return f.CompareTo(other.f);
+                return f.CompareTo(other.f) ==0? g.CompareTo(other.g) : f.CompareTo(other.f);
             }
         }
 
         public List<S> Find_path(S start, S end)
         {
-            HashSet<S> closedSet = new HashSet<S>();
-            SortedSet<Node> openSet = new SortedSet<Node>();
+            System.Collections.Generic.HashSet<S> closedSet = new System.Collections.Generic.HashSet<S>();
+            IntervalHeap<Node> openSet = new IntervalHeap<Node>();
             Node curr = new Node(start, null);
             while (!curr.state.Equals(end))
             {
@@ -53,12 +49,13 @@ namespace Planner
                 {
                     foreach (S state in curr.state.AvailableMoves())
                     {
+                        if (closedSet.Contains(state)) continue;
                         openSet.Add(new Node(state, curr));
                     }
                     closedSet.Add(curr.state);
                 }
-                curr = openSet.Min;
-                openSet.Remove(curr);
+                curr = openSet.DeleteMin();
+
             }
 
             Stack<S> stack = new Stack<S>();
@@ -68,6 +65,7 @@ namespace Planner
                 curr = curr.parent;
             } 
             return stack.ToList<S>();
+            
             
         }
     }

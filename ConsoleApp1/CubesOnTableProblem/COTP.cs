@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pathfinder;
 
 namespace IA.CubesOnTableProblem
 {
@@ -16,7 +14,7 @@ namespace IA.CubesOnTableProblem
             initialState = new CubeState();
             finalState = new CubeState();
 
-            int c =9;
+            int c =11;
 
             //Inital State
             for(int i = 0; i < c; i++)
@@ -28,20 +26,22 @@ namespace IA.CubesOnTableProblem
             //Final State
             finalState.cubes[0] = 2; finalState.towertops.Add(0);
             finalState.cubes[1] = 7;
-            finalState.cubes[2] = 8;
+            finalState.cubes[2] = 10;
             finalState.cubes[3] = 1;finalState.towertops.Add(3);
             finalState.cubes[4] = -1;
             finalState.cubes[5] = 6; finalState.towertops.Add(5);
             finalState.cubes[6] = 4;
             finalState.cubes[7] = -1;
-            finalState.cubes[8] = -1;
+            finalState.cubes[8] = 9; finalState.towertops.Add(8);
+            finalState.cubes[9] = -1;
+            finalState.cubes[10] = -1;
 
 
 
 
 
-            Planner.Planner<CubeState, CubeHeuristic> planner = new Planner.Planner<CubeState, CubeHeuristic>();
-            List<CubeState> path = planner.Find_path(initialState, finalState);
+            Pathfinder<CubeState, CubeHeuristic> p = new Pathfinder<CubeState, CubeHeuristic>();
+            List<CubeState> path = p.Find_path(initialState, finalState);
             foreach (CubeState s in path)
             {
                 Console.WriteLine(s.ToString());

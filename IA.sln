@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IA", "ConsoleApp1\IA.csproj", "{8807F0A7-806A-4B0F-BA1A-6D77FD7058C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planner", "ClassLibrary1\Planner.csproj", "{5DE18B6D-2B37-41C1-8CFA-8580C352C2F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder", "ClassLibrary1\Pathfinder.csproj", "{5DE18B6D-2B37-41C1-8CFA-8580C352C2F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

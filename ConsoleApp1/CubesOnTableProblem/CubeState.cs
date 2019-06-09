@@ -1,7 +1,5 @@
-﻿using Planner;
-using System;
+﻿using Pathfinder;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace IA.CubesOnTableProblem
 {
@@ -59,12 +57,13 @@ namespace IA.CubesOnTableProblem
 
         public override int GetHashCode()
         {
-            UInt64 hashcode = 0;
+            int radix = cubes.Count;
+            int hashcode = 0;
             for(int i = 0; i < cubes.Count; i++)
             {
-                hashcode = (hashcode << 4) ^ (ulong)cubes[i];
+                hashcode = hashcode * radix + cubes[i] == -1 ? cubes.Count : cubes[i];
             }
-            return (int)hashcode;
+            return hashcode;
         }
 
         public override string ToString()
@@ -81,7 +80,7 @@ namespace IA.CubesOnTableProblem
                 }
                 s += "] ";
             }
-            return s + " " + fromAction.ToString();
+            return fromAction.ToString()+"\n"+s+"\n";
 
 
         }

@@ -1,5 +1,5 @@
 ﻿using System;
-using Planner;
+using Pathfinder;
 
 namespace IA
 {

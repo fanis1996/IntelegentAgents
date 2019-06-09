@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using Planner;
+using Pathfinder;
 using System;
 
 namespace IA
 {
-    public class ThreeJugsState : Planner.IState
+    public class ThreeJugsState : IState
         {
         static public readonly int[] Containers = { 8, 5, 3 };
         public  int[] state;

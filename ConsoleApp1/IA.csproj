@@ -74,9 +74,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Planner.csproj">
+    <ProjectReference Include="..\ClassLibrary1\Pathfinder.csproj">
       <Project>{5de18b6d-2b37-41c1-8cfa-8580c352c2f0}</Project>
-      <Name>Planner</Name>
+      <Name>Pathfinder</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
